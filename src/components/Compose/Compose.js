@@ -27,6 +27,9 @@ export default class Compose extends Component {
   render() {
     // Destructuring
     const { text } = this.state;
+    let mappedPosts = this.state.posts(item => {
+      return <Post key={indexplaceholder} item={item}
+    })
 
     return (
       <section className="Compose__parent">
@@ -51,3 +54,5 @@ export default class Compose extends Component {
     )
   }
 }
+
+export default Compose;
