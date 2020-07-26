@@ -21,15 +21,15 @@ export default class Compose extends Component {
   }
 
   createPost() {
-
+    const {text} = this.state;
+    const {createPostFn} = this.props;
+    createPostFn(text);
+    this.setState({text: ''})
   }
 
   render() {
     // Destructuring
     const { text } = this.state;
-    let mappedPosts = this.state.posts(item => {
-      return <Post key={indexplaceholder} item={item}
-    })
 
     return (
       <section className="Compose__parent">
@@ -55,4 +55,3 @@ export default class Compose extends Component {
   }
 }
 
-export default Compose;

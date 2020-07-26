@@ -54,19 +54,20 @@ export default class Post extends Component {
       // const editing = this.state.editing
       // const showMasterMenu = this.state.showMasterMenu
     const { editing, showMasterMenu } = this.state;
-
+    const { text, date, id, deletePostFn, updatePostFn } = this.props;
+// So, now that we've destructured these, we can just do {date} or {text} where it would normally require {this.props.text} or {this.props.date}. Same for the this.state destructuring right above. -MS.
     return (
       // Main body of post
       <section className="Post__parent" onClick={ this.hideMasterMenu }>
 
         {/* Three dots in top right corner */}
-        <div className="Post__master-controls">
+        <div className="Post__master-controls">s
           <MasterControlIcon onClick={ this.toggleMasterMenu } />
 
           {/* Drop-down menu. Remember that the "showMasterMenu" variable has been destructured off of this.state */}
           <div className="Post__master-menu" style={ { display: showMasterMenu ? 'flex' : 'none' } }>
             <span onClick={ this.showEdit }>Edit</span>
-            <span>Delete</span>
+            <span onClick={ () => deletePostFn(id)}>Delete</span>
           </div>
         </div>
 
@@ -95,7 +96,9 @@ export default class Post extends Component {
             // This has been pulled off of this.state via destructuring
             editing
             ?
-              <Edit text=""
+              <Edit text={text}
+                    id={id}
+                    updatePostFn={updatePostFn}
                     hideEdit={ this.hideEdit } />
             :
               <span className="Post__text">{text}</span>
